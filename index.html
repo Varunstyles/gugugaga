@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureFedHE — Privacy-Preserving Federated Learning</title>
+    <meta name="description" content="SecureFedHE: A novel framework for Privacy-Preserving Federated Learning with Selective Homomorphic Encryption">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Secure<span class="logo-accent">Fed</span>HE</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#evaluation" class="nav-btn">Phase 4 Evaluation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home / Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">RESEARCH PROJECT SHOWCASE</div>
+                <h1 class="hero-title">
+                    Privacy-Preserving<br>
+                    <span class="text-gradient">Federated Learning</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Standard Federated Learning isn't secure enough, and full Homomorphic Encryption is too slow for edge devices. 
+                    <strong>SecureFedHE</strong> bridges the gap with Selective HE and Differential Privacy, achieving strong security with only a ~0.20% drop in accuracy.
+                </p>
+                <div class="hero-cta">
+                    <a href="#roadmap" class="btn btn-secondary">Explore the Roadmap</a>
+                    <a href="#evaluation" class="btn btn-primary">View Benchmarks</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The 5-Phase Roadmap</h2>
+                <p class="section-desc">From theoretical foundation to a fully decentralized, mathematically secure architecture.</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item completed">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content card-glass">
+                        <h3>Phase 1: Foundation & Gap Analysis</h3>
+                        <p>Developed the Statement of Purpose and built a 13-paper comparative matrix. Proved to supervisors that standard FL lacks security while full HE is computationally unfeasible for edge devices. Gap identified.</p>
+                        <span class="status-badge">Completed</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item completed">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content card-glass">
+                        <h3>Phase 2: Architectural Design</h3>
+                        <p>Mapped out the logic for the SecureFedHE framework before writing code. Designed the exact neural network layer split: final layers get encrypted, intermediate layers get protected with mathematical noise (Differential Privacy).</p>
+                        <span class="status-badge">Completed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item completed">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content card-glass">
+                        <h3>Phase 3: Prototyping & The "Three Rings"</h3>
+                        <p>Heavy engineering phase. Built isolated rings to avoid complexity: Vanilla FL baseline (Ring 1), Selective HE + DP (Ring 2), and Decentralization (Ring 3). Successfully debugged DP noise and proved the ~0.20% accuracy drop target.</p>
+                        <span class="status-badge">Completed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item active">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content card-glass active-card">
+                        <h3>Phase 4: Evaluation & Benchmarking</h3>
+                        <p>Translating raw CSV data from the Phase 3 experiments into publication-ready graphs that prove the system is 3–5x faster than standard methods without sacrificing accuracy. <em>You are here.</em></p>
+                        <a href="#evaluation" class="link-btn">Jump to Dashboard →</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item upcoming">
+                    <div class="timeline-marker">5</div>
+                    <div class="timeline-content card-glass">
+                        <h3>Phase 5: Drafting the Manuscript</h3>
+                        <p>Detailing the methodology, presenting the figures, and submitting to a top-tier security or privacy conference. The hardest coding is behind us.</p>
+                        <span class="status-badge upcoming-badge">Future Work</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="section bg-alternate">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The "Three Rings" Architecture</h2>
+                <p class="section-desc">We built the system in three isolated rings to manage complexity and prove our claims.</p>
+            </div>
+
+            <div class="rings-grid">
+                <div class="ring-card card-glass">
+                    <div class="ring-header">
+                        <div class="ring-icon">1</div>
+                        <h3>Ring 1: Vanilla FL</h3>
+                    </div>
+                    <p>Built a standard, unencrypted system first. Proved that simulated devices could collaboratively train an AI to ~79% accuracy. This provided our baseline.</p>
+                    <div class="tech-stack">
+                        <span>PyTorch</span> <span>FedAvg</span> <span>Central Server</span>
+                    </div>
+                </div>
+
+                <div class="ring-card card-glass highlight-card">
+                    <div class="ring-header">
+                        <div class="ring-icon highlight-icon">2</div>
+                        <h3>Ring 2: Selective HE + DP</h3>
+                    </div>
+                    <p>The core novelty. Wrapped the Ring 1 system in cryptography. Fixed mathematical bugs in Differential Privacy noise scaling. Ran experiments at privacy levels (ε = 10, 20, 50).</p>
+                    <div class="tech-stack">
+                        <span>CKKS Encryption</span> <span>Gaussian DP</span> <span>Selective</span>
+                    </div>
+                </div>
+
+                <div class="ring-card card-glass">
+                    <div class="ring-header">
+                        <div class="ring-icon">3</div>
+                        <h3>Ring 3: Decentralization</h3>
+                    </div>
+                    <p>Replaced the central server with a peer-to-peer ring network, making the system fully decentralized. Nodes aggregate encrypted data homomorphically as it passes around the ring.</p>
+                    <div class="tech-stack">
+                        <span>Peer-to-Peer</span> <span>No Single Point of Failure</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Framework Diagram -->
+            <div class="framework-diagram card-glass mt-12">
+                <h3 class="text-center mb-8">SecureFedHE Neural Network Split</h3>
+                <div class="diagram-flex">
+                    <div class="fw-layer fw-layer-conv">
+                        <div class="fw-badge">PLAINTEXT</div>
+                        <div class="fw-name">Conv Blocks</div>
+                        <div class="fw-detail">Generic features</div>
+                    </div>
+                    <div class="fw-arrow">→</div>
+                    <div class="fw-layer fw-layer-fc1">
+                        <div class="fw-badge">DP NOISE</div>
+                        <div class="fw-name">FC1 (256 units)</div>
+                        <div class="fw-detail">Gaussian mechanism</div>
+                    </div>
+                    <div class="fw-arrow">→</div>
+                    <div class="fw-layer fw-layer-fc2">
+                        <div class="fw-badge">CKKS HE</div>
+                        <div class="fw-name">FC2 (Classifier)</div>
+                        <div class="fw-detail">Homomorphic encryption</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Simulation -->
+    <section id="simulation" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="hero-badge mb-4">HOW IT WORKS</div>
+                <h2 class="section-title">Interactive Demonstration</h2>
+                <p class="section-desc">Watch how hospitals train on private data, encrypt the model, and safely update the global AI without sharing any patient information.</p>
+            </div>
+            
+            <div class="sim-wrapper card-glass mt-12">
+                <div class="sim-controls">
+                    <button class="btn btn-primary" id="btnStartSim">▶ Start Training Round</button>
+                    <div class="sim-status" id="simStatusText">System Idle. Waiting to start...</div>
+                </div>
+
+                <div class="sim-stage">
+                    <!-- Central Server -->
+                    <div class="sim-server" id="simServer">
+                        <div class="server-icon">☁️</div>
+                        <div class="server-name">Main AI Model</div>
+                        <div class="server-detail">Aggregates encrypted updates</div>
+                    </div>
+
+                    <!-- Data Packets (Hidden by default, animated via JS/CSS) -->
+                    <div class="sim-packets-container" id="simPackets"></div>
+
+                    <!-- Hospital Nodes -->
+                    <div class="sim-nodes">
+                        <div class="sim-node" id="nodeA">
+                            <div class="node-icon">🏥</div>
+                            <div class="node-name">Hospital A</div>
+                            <div class="node-data">8,432 Patient Records</div>
+                            <div class="node-model-state" id="stateA">Idle</div>
+                        </div>
+                        <div class="sim-node" id="nodeB">
+                            <div class="node-icon">🏥</div>
+                            <div class="node-name">Hospital B</div>
+                            <div class="node-data">12,150 Patient Records</div>
+                            <div class="node-model-state" id="stateB">Idle</div>
+                        </div>
+                        <div class="sim-node" id="nodeC">
+                            <div class="node-icon">🏥</div>
+                            <div class="node-name">Hospital C</div>
+                            <div class="node-data">5,920 Patient Records</div>
+                            <div class="node-model-state" id="stateC">Idle</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Evaluation Dashboard -->
+    <section id="evaluation" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="hero-badge mb-4">PHASE 4</div>
+                <h2 class="section-title">Evaluation Dashboard</h2>
+                <p class="section-desc">Upload your raw CSV logs from Phase 3 to generate publication-ready benchmarking figures.</p>
+            </div>
+
+            <!-- Data Upload -->
+            <div class="upload-grid">
+                <div class="upload-card card-glass" id="uploadBaseline">
+                    <div class="upload-icon">📊</div>
+                    <div class="upload-label">Ring 1 — Baseline</div>
+                    <div class="upload-file">baseline_metrics.csv</div>
+                    <input type="file" accept=".csv" data-ring="baseline" class="csv-input">
+                    <div class="upload-status" data-status="baseline">Drop or click to upload</div>
+                </div>
+                <div class="upload-card card-glass" id="uploadHE10">
+                    <div class="upload-icon">🔐</div>
+                    <div class="upload-label">Ring 2 — HE ε=10</div>
+                    <div class="upload-file">he_eps10_metrics.csv</div>
+                    <input type="file" accept=".csv" data-ring="he_eps10" class="csv-input">
+                    <div class="upload-status" data-status="he_eps10">Drop or click to upload</div>
+                </div>
+                <div class="upload-card card-glass" id="uploadHE20">
+                    <div class="upload-icon">🔐</div>
+                    <div class="upload-label">Ring 2 — HE ε=20</div>
+                    <div class="upload-file">he_eps20_metrics.csv</div>
+                    <input type="file" accept=".csv" data-ring="he_eps20" class="csv-input">
+                    <div class="upload-status" data-status="he_eps20">Drop or click to upload</div>
+                </div>
+                <div class="upload-card card-glass" id="uploadHE50">
+                    <div class="upload-icon">🔐</div>
+                    <div class="upload-label">Ring 2 — HE ε=50</div>
+                    <div class="upload-file">he_eps50_metrics.csv</div>
+                    <input type="file" accept=".csv" data-ring="he_eps50" class="csv-input">
+                    <div class="upload-status" data-status="he_eps50">Drop or click to upload</div>
+                </div>
+                <div class="upload-card card-glass" id="uploadRing">
+                    <div class="upload-icon">🔗</div>
+                    <div class="upload-label">Ring 3 — Decentralised</div>
+                    <div class="upload-file">ring_metrics.csv</div>
+                    <input type="file" accept=".csv" data-ring="ring" class="csv-input">
+                    <div class="upload-status" data-status="ring">Drop or click to upload</div>
+                </div>
+            </div>
+
+            <div class="upload-actions">
+                <button class="btn btn-secondary" id="btnLoadDemo" onclick="loadDemoData()">
+                    Load Demo Data
+                </button>
+                <button class="btn btn-primary" id="btnGenerateCharts" onclick="generateAllCharts()" disabled>
+                    Generate Figures
+                </button>
+            </div>
+
+            <!-- Charts Section -->
+            <div id="charts-wrapper" style="display:none;" class="mt-16">
+                <!-- Summary Stats -->
+                <div class="hero-stats mb-12" id="heroStats">
+                    <div class="stat-card card-glass">
+                        <div class="stat-value" id="statAccuracy">—</div>
+                        <div class="stat-label">Best Accuracy</div>
+                    </div>
+                    <div class="stat-card card-glass">
+                        <div class="stat-value" id="statPrivacy">—</div>
+                        <div class="stat-label">Privacy Budget (ε)</div>
+                    </div>
+                    <div class="stat-card card-glass">
+                        <div class="stat-value" id="statOverhead">—</div>
+                        <div class="stat-label">Avg HE Overhead</div>
+                    </div>
+                    <div class="stat-card card-glass">
+                        <div class="stat-value" id="statDrop">—</div>
+                        <div class="stat-label">Accuracy Drop</div>
+                    </div>
+                </div>
+
+                <!-- Charts Grid -->
+                <div class="charts-grid">
+                    <!-- Chart 1: Accuracy Convergence -->
+                    <div class="chart-card card-glass" id="chartAccCard">
+                        <div class="chart-header">
+                            <div>
+                                <h3 class="chart-title">Figure 1 — Test Accuracy Convergence</h3>
+                            </div>
+                            <button class="btn-export" onclick="exportChart('chartAccuracy')">Export</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chartAccuracy"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Chart 2: Privacy Trade-off -->
+                    <div class="chart-card card-glass" id="chartPrivacyCard">
+                        <div class="chart-header">
+                            <div>
+                                <h3 class="chart-title">Figure 2 — Privacy-Utility Trade-off</h3>
+                            </div>
+                            <button class="btn-export" onclick="exportChart('chartPrivacy')">Export</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chartPrivacy"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Chart 3: Overhead -->
+                    <div class="chart-card card-glass" id="chartOverheadCard">
+                        <div class="chart-header">
+                            <div>
+                                <h3 class="chart-title">Figure 3 — Computational Overhead</h3>
+                            </div>
+                            <button class="btn-export" onclick="exportChart('chartOverhead')">Export</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chartOverhead"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Chart 4: Communication -->
+                    <div class="chart-card card-glass" id="chartCommCard">
+                        <div class="chart-header">
+                            <div>
+                                <h3 class="chart-title">Figure 4 — Communication Cost</h3>
+                            </div>
+                            <button class="btn-export" onclick="exportChart('chartComm')">Export</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chartComm"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Table -->
+                <div class="chart-card card-glass mt-8" id="summaryTableCard">
+                    <div class="chart-header">
+                        <h3 class="chart-title">Table 1 — Benchmark Summary</h3>
+                    </div>
+                    <div class="table-container">
+                        <table id="summaryTable">
+                            <thead>
+                                <tr>
+                                    <th>Configuration</th>
+                                    <th>Final Accuracy (%)</th>
+                                    <th>Best Accuracy (%)</th>
+                                    <th>Accuracy Drop (%)</th>
+                                    <th>Avg Wall Time (s)</th>
+                                    <th>Avg Enc Overhead (s)</th>
+                                    <th>Avg Comm (MB)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="summaryTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Secure<span>Fed</span>HE</div>
+                <p>Phase 5 Manuscript Draft Preparation Dashboard</p>
+                <p class="copyright">&copy; 2026 SecureFedHE Research Project. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
